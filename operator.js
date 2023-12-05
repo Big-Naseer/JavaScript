@@ -38,3 +38,5 @@ console.log(true && false);
 console.log(false || true);
 
 console.log(!true);
+
+console.log("b" + "a" +2 +"a")

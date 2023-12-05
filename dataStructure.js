@@ -20,7 +20,8 @@ mixArray.shift();
 console.log(mixArray);
 
 let birds = ["Owl", "Eagle", "Parrot", "Falcon"];
-console.log(birds[0]);
+birds.splice(0,1 ,"bats")
+console.log(birds);
 
 let pos = birds.indexOf("Owl");
 console.log(pos);

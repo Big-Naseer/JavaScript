@@ -9,3 +9,7 @@ console.log(names);
 console.log(age);
 console.log(occupation);
 console.log(`My name is ${names} and am ${age} on a journey to become a ${occupation}`);
+
+function a(){
+    console.log(typeof(a))
+}
