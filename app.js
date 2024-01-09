@@ -98,8 +98,8 @@ function makeUser(name, age) {
   };
 }
 
-let user = makeUser("John", 30);
-console.log(user);
+let users = makeUser("John", 30);
+console.log(users);
 
 // let obj = {
 //   for: 1,
@@ -127,17 +127,125 @@ console.log(obj);
 // console.log( rabbit.eats ); // true (**)
 // console.log( rabbit.jumps ); // true
 
+// let animal = {
+//   eats: true,
+//   walk() {
+//     console.log("Animal walk");
+//   }
+// };
+
+// let rabbit = {
+//   jumps: true,
+//   __proto__: animal
+// };
+
+// // walk is taken from the prototype
+
+// // rabbit.walk(); // Animal walk
+
+// let longEar = {
+//   earLength: 10,
+//   __proto__: rabbit
+// };
+
+// // walk is taken from the prototype chain
+// longEar.walk(); // Animal walk
+// console.log(longEar.eats); // true (from rabbit)
+
+// let animal = {
+//   eats: true,
+//   walk() {
+//     /* this method won't be used by rabbit */
+//   }
+// };
+
+// let rabbit = {
+//   __proto__: animal
+// };
+
+// rabbit.walk = function() {
+//   console.log("Rabbit! Bounce-bounce!");
+// };
+
+// rabbit.walk(); // Rabbit! Bounce-bounce!
+
+
+let user = {
+  name: "John",
+  surname: "Smith",
+
+  set fullName(value) {
+    [this.name, this.surname] = value.split(" ");
+  },
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  }
+};
+
+let admin = {
+  __proto__: user,
+  isAdmin: true
+};
+
+console.log(admin.fullName); // John Smith (*)
+
+// setter triggers!
+admin.fullName = "Alice Cooper"; // (**)
+
+console.log(admin.fullName); // Alice Cooper, state of admin modified
+console.log(user.fullName); // John Smith, state of user protected
+
+// animal has methods
+// let animal = {
+//   walk() {
+//     if (!this.isSleeping) {
+//       alert(`I walk`);
+//     }
+//   },
+//   sleep() {
+//     this.isSleeping = true;
+//   }
+// };
+
+// let rabbit = {
+//   name: "White Rabbit",
+//   __proto__: animal
+// };
+
+// // modifies rabbit.isSleeping
+// rabbit.sleep();
+
+// // alert(rabbit.isSleeping); // true
+// // alert(animal.isSleeping);
+
+// let animal = {
+//   jumps: null
+// };
+// let rabbit = {
+//   __proto__: animal,
+//   jumps: true
+// };
+
+// console.log( rabbit.jumps ); // ? (1)
+
+// delete rabbit.jumps;
+
+// console.log( rabbit.jumps ); // ? (2)
+
+// delete animal.jumps;
+
+// console.log( rabbit.jumps ); // ? (3)
+
 let animal = {
-  eats: true,
-  walk() {
-    console.log("Animal walk");
+  eat() {
+    this.full = true;
   }
 };
 
 let rabbit = {
-  jumps: true,
   __proto__: animal
 };
 
-// walk is taken from the prototype
-rabbit.walk(); // Animal walk
+console.log(rabbit.eat())
+rabbit.eat()
